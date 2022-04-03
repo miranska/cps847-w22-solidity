@@ -1,9 +1,9 @@
-pragma solidity >=0.5.0 <0.9.0;
+pragma solidity >=0.5.0 <0.7.0;
 
 // Proof of Existence contract, version 2
 contract ProofOfExistence2 {
     // state
-    bytes32[] private proofs;
+    mapping (bytes32 => bool) private proofs;
 
     // calculate and store the proof for a document
     // *transactional function*
@@ -15,7 +15,7 @@ contract ProofOfExistence2 {
     // store a proof of existence in the contract state
     // *transactional function*
     function storeProof(bytes32 proof) private  {
-        proofs.push(proof);
+        proofs[proof] = true;
     }
 
     // check if a document has been notarized
@@ -37,11 +37,6 @@ contract ProofOfExistence2 {
     // returns true if proof is stored
     // *read-only function*
     function hasProof(bytes32 proof) private view returns (bool) {
-        for (uint256 i = 0; i < proofs.length; i++) {
-            if (proofs[i] == proof) {
-                return true;
-            }
-        }
-        return false;
+        return proofs[proof];
     }
 }
