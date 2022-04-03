@@ -1,4 +1,4 @@
-pragma solidity >=0.4.22 <0.9.0;
+pragma solidity >=0.5.0 <0.9.0;
 
 // Proof of Existence contract, version 1
 contract ProofOfExistence1 {
